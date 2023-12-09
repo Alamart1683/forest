@@ -42,7 +42,7 @@ public class Main {
         oakSprites[2][1] = "o3Au";
         oakSprites[2][2] = "o3Wi";
         oakSprites[2][3] = "o3Sp";
-        Tree oak = new Tree("Oak", "Tree", 3, 1,3, 1, 15, 10, oakSprites[0][0], oakSprites);
+        Tree oak = new Tree("Oak", "Tree", 3, 1,3, 1, 30, 20, oakSprites[0][0], oakSprites);
         plantList.add(oak);
         String[][] poplarSprites = new String[3][4];
         poplarSprites[0][0] = "p1Su";
@@ -57,7 +57,7 @@ public class Main {
         poplarSprites[2][1] = "p3Au";
         poplarSprites[2][2] = "p3Wi";
         poplarSprites[2][3] = "p3Sp";
-        Tree poplar = new Tree("Poplar", "Tree", 3,1, 3, 1, 15, 10, poplarSprites[0][0], poplarSprites);
+        Tree poplar = new Tree("Poplar", "Tree", 3,1, 3, 1, 30, 20, poplarSprites[0][0], poplarSprites);
         plantList.add(poplar);
         String[][] spruceSprites = new String[3][4];
         spruceSprites[0][0] = "s1Su";
@@ -72,7 +72,7 @@ public class Main {
         spruceSprites[2][1] = "s3Au";
         spruceSprites[2][2] = "s3Wi";
         spruceSprites[2][3] = "s3Sp";
-        Tree spruce = new Tree("Spruce", "Tree", 3, 1,3, 1, 15, 10, spruceSprites[0][0], spruceSprites);
+        Tree spruce = new Tree("Spruce", "Tree", 3, 1,3, 1, 30, 20, spruceSprites[0][0], spruceSprites);
         plantList.add(spruce);
         return plantList;
     }

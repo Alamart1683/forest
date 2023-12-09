@@ -47,10 +47,10 @@ public class ForestAlgorithm {
             }
         }
         currentTurn = 0;
-        for (Plant plant: plants) {
+        for (int i = 0; i < plants.size() * 3; i ++) {
             int x = random.nextInt(forest.length);
             int y = random.nextInt(forest[0].length);
-            forest[x][y] = new Terrain(new Tree(plant));
+            forest[x][y] = new Terrain(new Tree(plants.get(i / 3)));
         }
     }
 
@@ -82,8 +82,8 @@ public class ForestAlgorithm {
                 }
                 if (checkBounds(x, y)) {
                     if (checkNearTrees(x, y)) {
-                        // forest[x][y].setPlant(new Tree(determinePlant(plant)));
-                        forest[x][y].setPlant(new Tree(plants.get(random.nextInt(3))));
+                        forest[x][y].setPlant(new Tree(determinePlant(plant)));
+                        //forest[x][y].setPlant(new Tree(plants.get(random.nextInt(3))));
                         // With age, the ability to produce shoots decreases
                         if (plant.getFertility() > 1) {
                             plant.setFertility(plant.getFertility() - plant.getGrowthStep());
