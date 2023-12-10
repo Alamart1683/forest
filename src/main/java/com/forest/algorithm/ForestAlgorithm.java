@@ -94,7 +94,6 @@ public class ForestAlgorithm {
                 }
                 if (checkNearTrees(x, y)) {
                     forest[x][y].setPlant(new Tree(determinePlant(plant)));
-                    //forest[x][y].setPlant(new Tree(plants.get(random.nextInt(3))));
                     // With age, the ability to produce shoots decreases
                     if (plant.getFertility() > 1) {
                         plant.setFertility(plant.getFertility() - plant.getGrowthStep());
