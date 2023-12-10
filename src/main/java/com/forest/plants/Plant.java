@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public abstract class Plant {
     private final String plantName;
-    private final String plantType;
+    private final PlantType plantType;
     private int growthStep;
     private int growthStatus;
     private final int growthThreshold;
@@ -49,7 +49,7 @@ public abstract class Plant {
         this.growthStatus = growthStatus;
     }
 
-    public Plant(String plantName, String plantType, int growthStep, int growthStatus, int growthThreshold, int age, int ageThreshold, int fertility, String sprite, String[][] sprites) {
+    public Plant(String plantName, PlantType plantType, int growthStep, int growthStatus, int growthThreshold, int age, int ageThreshold, int fertility, String sprite, String[][] sprites) {
         this.plantName = plantName;
         this.plantType = plantType;
         this.growthStep = growthStep;

@@ -64,7 +64,19 @@ public class ForestAlgorithm {
     }
 
     private void fertilityAlgorithm(Plant plant, int i, int j) {
-        if (plant.getAge() % plant.getFertility() == 0 && plant.getGrowthStatus() == plant.getGrowthThreshold()) {
+        switch (plant.getPlantType()) {
+            case Tree:
+                growTree(plant, i, j);
+            case Grass:
+
+            default:
+        }
+
+    }
+
+    private void growTree(Plant plant, int i, int j) {
+        if (plant.getAge() % plant.getFertility() == 0 && plant.getGrowthStatus() == plant.getGrowthThreshold() &&
+                currentSeason != Season.Winter && currentSeason != Season.Autumn) {
             for (int k = 0; k < plant.getFertility(); k++) {
                 int x, y;
                 if (k % 2 == 0) {
@@ -80,38 +92,83 @@ public class ForestAlgorithm {
                     x = random.nextInt(i - 4, i - 1);
                     y = random.nextInt(j - 4, j - 1);
                 }
-                if (checkBounds(x, y)) {
-                    if (checkNearTrees(x, y)) {
-                        forest[x][y].setPlant(new Tree(determinePlant(plant)));
-                        //forest[x][y].setPlant(new Tree(plants.get(random.nextInt(3))));
-                        // With age, the ability to produce shoots decreases
-                        if (plant.getFertility() > 1) {
-                            plant.setFertility(plant.getFertility() - plant.getGrowthStep());
-                            if (plant.getFertility() < 1)
-                                plant.setFertility(1);
-                        }
-                        return;
+                if (checkNearTrees(x, y)) {
+                    forest[x][y].setPlant(new Tree(determinePlant(plant)));
+                    //forest[x][y].setPlant(new Tree(plants.get(random.nextInt(3))));
+                    // With age, the ability to produce shoots decreases
+                    if (plant.getFertility() > 1) {
+                        plant.setFertility(plant.getFertility() - plant.getGrowthStep());
+                        if (plant.getFertility() < 1)
+                            plant.setFertility(1);
                     }
+                    return;
                 }
             }
         }
     }
 
-    private boolean checkBounds(int x, int y) {
-        return x < forest.length && x >= 0 && y < forest[0].length && y >= 0;
+    private void growGrass(Plant plant, int i, int j) {
+
     }
 
     private boolean checkNearTrees(int x, int y) {
-        int nearCase = random.nextInt(2);
-        if (x < forest.length - 1 && x >= 1 && y < forest[0].length - 1 && y >= 1) {
+        if (x < forest.length && x >= 0 && y < forest[0].length && y >= 0) {
+            int nearWithoutBordersCase = random.nextInt(40);
+            if (nearWithoutBordersCase == 0)
+                return true;
+
+            boolean xMinus1y = false;
+            if (x - 1 >= forest.length || x - 1 < 0)
+                xMinus1y = true;
+            else if (forest[x - 1][y].getPlant() == null)
+                xMinus1y = true;
+
+            boolean xPlus1y = false;
+            if (x + 1 >= forest.length)
+                xPlus1y = true;
+            else if (forest[x + 1][y].getPlant() == null)
+                xPlus1y = true;
+
+            boolean xyPlus1 = false;
+            if (y + 1 >= forest[0].length)
+                xyPlus1 = true;
+            else if (forest[x][y + 1].getPlant() == null)
+                xyPlus1 = true;
+
+            boolean xyMinus1 = false;
+            if (y - 1 >= forest[0].length || y - 1 < 0)
+                xyMinus1 = true;
+            else if (forest[x][y - 1].getPlant() == null)
+                xyMinus1 = true;
+
+            boolean xPlus1yPlus1 = false;
+            if (x + 1 >= forest.length || y + 1 >= forest[0].length)
+                xPlus1yPlus1 = true;
+            else if (forest[x + 1][y + 1].getPlant() == null)
+                xPlus1yPlus1 = true;
+
+            boolean xMinus1yPlus1 = false;
+            if (x - 1 >= forest.length || x - 1 < 0 || y + 1 >= forest[0].length)
+                xMinus1yPlus1 = true;
+            else if (forest[x - 1][y + 1].getPlant() == null)
+                xMinus1yPlus1 = true;
+
+            boolean xPlus1yMinus1 = false;
+            if (x + 1 >= forest.length || y - 1 >= forest[0].length || y - 1 < 0)
+                xPlus1yMinus1 = true;
+            else if (forest[x + 1][y - 1].getPlant() == null)
+                xPlus1yMinus1 = true;
+
+            boolean xMinus1yMinus1 = false;
+            if (x - 1 >= forest.length || x - 1 < 0 || y - 1 >= forest[0].length || y - 1 < 0)
+                xMinus1yMinus1 = true;
+            else if (forest[x - 1][y - 1].getPlant() == null)
+                xMinus1yMinus1 = true;
+            int nearCase = random.nextInt(2);
             if (nearCase == 0) {
-                return forest[x][y - 1].getPlant() == null && forest[x][y + 1].getPlant() == null &&
-                        forest[x - 1][y].getPlant() == null && forest[x + 1][y].getPlant() == null;
+                return xyMinus1 && xyPlus1 && xMinus1y && xPlus1y;
             } else {
-                return forest[x + 1][y + 1].getPlant() == null && forest[x - 1][y + 1].getPlant() == null &&
-                        forest[x + 1][y - 1] == null && forest[x - 1][y - 1].getPlant() == null &&
-                        forest[x][y - 1].getPlant() == null && forest[x][y + 1].getPlant() == null &&
-                        forest[x - 1][y].getPlant() == null && forest[x + 1][y].getPlant() == null;
+                return xPlus1yPlus1 && xMinus1yPlus1 && xPlus1yMinus1 && xMinus1yMinus1 && xyMinus1 && xyPlus1 && xMinus1y && xPlus1y;
             }
         }
         return false;

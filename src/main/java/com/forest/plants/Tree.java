@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Tree extends Plant {
 
-    public Tree(String plantName, String plantType, int growthStep, int growthStatus, int growthThreshold, int age, int ageThreshold, int fertility, String sprite, String[][] sprites) {
+    public Tree(String plantName, PlantType plantType, int growthStep, int growthStatus, int growthThreshold, int age, int ageThreshold, int fertility, String sprite, String[][] sprites) {
         super(plantName, plantType, growthStep, growthStatus, growthThreshold, age, ageThreshold, fertility, sprite, sprites);
     }
 
@@ -32,7 +32,7 @@ public class Tree extends Plant {
         // Death trigger
         Random random = new Random(getAge());
         if (getAge() > getAgeThreshold()) {
-            if (random.nextInt(getAgeThreshold() + getAgeThreshold() / 6 - getAge()) == 0) {
+            if (random.nextInt(getAgeThreshold() + getAgeThreshold() / 10 - getAge()) == 0) {
                 setAlive(false);
                 return newGrowthStatus;
             }

@@ -3,6 +3,7 @@ package com.forest;
 import com.forest.algorithm.ForestAlgorithm;
 import com.forest.algorithm.Season;
 import com.forest.plants.Plant;
+import com.forest.plants.PlantType;
 import com.forest.plants.Tree;
 import com.forest.terrain.Terrain;
 
@@ -42,7 +43,7 @@ public class Main {
         oakSprites[2][1] = "o3Au";
         oakSprites[2][2] = "o3Wi";
         oakSprites[2][3] = "o3Sp";
-        Tree oak = new Tree("Oak", "Tree", 3, 1,3, 1, 30, 20, oakSprites[0][0], oakSprites);
+        Tree oak = new Tree("Oak", PlantType.Tree, 4, 1,3, 1, 30, 13, oakSprites[0][0], oakSprites);
         plantList.add(oak);
         String[][] poplarSprites = new String[3][4];
         poplarSprites[0][0] = "p1Su";
@@ -57,7 +58,7 @@ public class Main {
         poplarSprites[2][1] = "p3Au";
         poplarSprites[2][2] = "p3Wi";
         poplarSprites[2][3] = "p3Sp";
-        Tree poplar = new Tree("Poplar", "Tree", 3,1, 3, 1, 30, 20, poplarSprites[0][0], poplarSprites);
+        Tree poplar = new Tree("Poplar", PlantType.Tree, 4,1, 3, 1, 30, 13, poplarSprites[0][0], poplarSprites);
         plantList.add(poplar);
         String[][] spruceSprites = new String[3][4];
         spruceSprites[0][0] = "s1Su";
@@ -72,7 +73,7 @@ public class Main {
         spruceSprites[2][1] = "s3Au";
         spruceSprites[2][2] = "s3Wi";
         spruceSprites[2][3] = "s3Sp";
-        Tree spruce = new Tree("Spruce", "Tree", 3, 1,3, 1, 30, 20, spruceSprites[0][0], spruceSprites);
+        Tree spruce = new Tree("Spruce", PlantType.Tree, 4, 1,3, 1, 30, 13, spruceSprites[0][0], spruceSprites);
         plantList.add(spruce);
         return plantList;
     }
