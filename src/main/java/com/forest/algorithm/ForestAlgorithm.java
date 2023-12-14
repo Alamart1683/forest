@@ -50,6 +50,14 @@ public class ForestAlgorithm {
         for (int i = 0; i < plants.size() * 3; i ++) {
             int x = random.nextInt(forest.length);
             int y = random.nextInt(forest[0].length);
+            if (x < forest.length / 5)
+                x = forest.length / 5;
+            if (x > forest.length - 5)
+                x = forest.length - 5;
+            if (y < forest[0].length / 5)
+                y = forest[0].length / 5;
+            if (y > forest[0].length - 5)
+                y = forest[0].length - 5;
             forest[x][y] = new Terrain(new Tree(plants.get(i / 3)));
         }
     }
