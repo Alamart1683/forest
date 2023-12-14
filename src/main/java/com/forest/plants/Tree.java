@@ -24,7 +24,7 @@ public class Tree extends Plant {
     }
 
     @Override
-    public int grow(int currentTurn, String currentSeason, String lastSeason) {
+    public int grow(String currentSeason, String lastSeason) {
         setAge(getAge() + 1);
         boolean isGrow = false;
         boolean isChangedSeason = !currentSeason.equals(lastSeason);

@@ -12,7 +12,6 @@ import java.util.Random;
 @Getter
 @Setter
 public class ForestAlgorithm {
-    private int currentTurn;
     private Season currentSeason;
     private Season lastSeason;
     private Terrain[][] forest;
@@ -28,7 +27,7 @@ public class ForestAlgorithm {
                         currTerrain.setPlant(null);
                     }
                     else {
-                        currTerrain.getPlant().grow(currentTurn, currentSeason.name(), lastSeason.name());
+                        currTerrain.getPlant().grow(currentSeason.name(), lastSeason.name());
                         if (currTerrain.getPlant().getGrowthStatus() == currTerrain.getPlant().getGrowthThreshold()) {
                             fertilityAlgorithm(currTerrain.getPlant(), i, j);
                         }
@@ -46,7 +45,6 @@ public class ForestAlgorithm {
                 forest[i][j] = new Terrain(null);
             }
         }
-        currentTurn = 0;
         for (int i = 0; i < plants.size() * 3; i ++) {
             int x = random.nextInt(forest.length);
             int y = random.nextInt(forest[0].length);
@@ -215,6 +213,4 @@ public class ForestAlgorithm {
         }
         return forestString.toString();
     }*/
-
-
 }
