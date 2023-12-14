@@ -50,6 +50,7 @@ public class ForestAlgorithm {
         for (int i = 0; i < plants.size() * 3; i ++) {
             int x = random.nextInt(forest.length);
             int y = random.nextInt(forest[0].length);
+            // More uniform tree growth
             if (x < forest.length / 5)
                 x = forest.length / 5;
             if (x > forest.length - 5)
